@@ -2,7 +2,11 @@ from xlrd import open_workbook
 import dropbox
 from dropbox import DropboxOAuth2FlowNoRedirect
 
-class TransferData:
+class DropboxFolderCreation:
+	"""
+	This class is responsible for creating empty directories in  dropbox account.
+	"""
+
 	def __init__(self):
 		# set your dropbox app key here
 		self.app_key = 'jkapc1edmhkgkpl'
@@ -11,19 +15,6 @@ class TransferData:
 		# set your xls path here such as /home/amar/Desktop/myfile.xlsx
 		self.xls_path = '/home/amar/Downloads/landwatch_dropbox.xls'
 
-
-	def read_xls(self):
-		"""
-		read xls and extract foldernames
-		"""
-
-		wb = open_workbook(self.xls_path).sheet_by_index(0)
-		directory_list = []
-		# if xls contains data from row 2 then set start_rowx=1
-		# else set it to 0 as below
-		# first argument is set to 0 since we want to read column 1 of xls
-		xls_data = wb.col_values(0, start_rowx=0)
-		return xls_data
 
 	def login_dropbox(self):
 		"""
@@ -47,9 +38,25 @@ class TransferData:
 			print('Error: %s' % (e,))
 		return oauth_result
 
-	def upload_file(self):
+
+	def read_xls(self):
 		"""
-		upload a file to Dropbox using API v2
+		read xls and extract folder names
+		"""
+
+		wb = open_workbook(self.xls_path).sheet_by_index(0)
+		directory_list = []
+		# if xls contains data from row 2 then set start_rowx=1
+		# else set it to 0 as below
+		# first argument is set to 0 since we want to read column 1 of xls
+		xls_data = wb.col_values(0, start_rowx=0)
+		return xls_data
+
+	
+
+	def create_dirs_on_dropbox(self):
+		"""
+		Create empty directories in Dropbox account using API v2
 		"""
 
 		dirs = self.read_xls()
@@ -67,9 +74,6 @@ class TransferData:
 			print("could not read data from xls file")
 		print('Successfully created directories in your dropbox account ')
 
-def main():
-	transferData = TransferData()
-	transferData.upload_file()
-
-if __name__ == '__main__':
-	main()
+	
+dbx_instance = DropboxFolderCreation()
+dbx_instance.create_dirs_on_dropbox()
