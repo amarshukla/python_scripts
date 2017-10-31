@@ -4,7 +4,7 @@ from dropbox import DropboxOAuth2FlowNoRedirect
 
 class DropboxFolderCreation:
 	"""
-	This class is responsible for creating empty directories in  dropbox account.
+	This class is responsible for creating empty directories in dropbox account.
 	"""
 
 	def __init__(self):
