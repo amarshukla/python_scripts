@@ -1,0 +1,20 @@
+'''
+        *
+       * *
+      * * *
+     * * * *
+    * * * * *
+'''
+
+def triag_1(height):
+  space = height-1
+  lst = []
+  for i in range(height+1):
+    #print(' '*space,'* ' * (i+1))
+    lst.append(' '*space+'* ' * (i+1))
+    space -= 1
+  print("\n".join(lst))
+  print("\n".join(reversed(lst)))
+  
+triag_1(6)
+
