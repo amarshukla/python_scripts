@@ -1,0 +1,10 @@
+lst = [1,1,1,1,1,2,3,4,4]
+repeated = []
+
+for i in range(len(lst)):
+  k = i + 1
+  for j in range(k, len(lst)):
+    if lst[i]==lst[j] and lst[j] not in repeated:
+      repeated.append(lst[j])
+
+print(repeated)
