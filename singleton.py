@@ -6,7 +6,7 @@ class Singleton(type):
         return cls._instances[cls]
         
 class Logger(metaclass=Singleton):
-    pass
+""" Singleton class implementation """
     name = ""
     def name(self):
 	    return self.name
